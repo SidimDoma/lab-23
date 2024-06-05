@@ -31,8 +31,8 @@ struct matrix *permute_string(struct matrix* matrix, size_t row1, size_t row2) {
 
 double matrix_norm(const struct matrix *m) {
     double max = 0.0;
-    for (int i = 0; i < m->rows; i++) {
-        for (int j = 0; j < m->cols; j++) {
+    for (size_t i = 0; i < m->rows; i++) {
+        for (size_t j = 0; j < m->cols; j++) {
             double abs_value = fabs(*get_element(m, i, j));
             if (abs_value > max) {
                 max = abs_value;

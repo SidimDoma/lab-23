@@ -27,7 +27,7 @@ struct matrix* inverse_matrix(struct matrix* m) {
 
     for (size_t i = 0; i < temp->rows; ++i) {
         size_t row = i;
-        while (row < temp->rows && *get_element(temp, row, i) == 0) {
+        while (row < temp->rows && get_element(temp, row, i) == 0) {
             row++;
         }
         if (row == temp->rows) {

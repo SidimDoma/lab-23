@@ -34,11 +34,11 @@ void add_element(struct matrix *m, size_t i, size_t j, double value) {
     m->data[i * m->cols + j] = value;
 }
 
-double *get_element(const struct matrix *m, size_t i, size_t j) {             // Gets values from matrix sets
+double* get_element(const struct matrix *m, size_t i, size_t j) {
     if (i < m->rows && j < m->cols) {
         return &m->data[i * m->cols + j];
     }
-    return 0;
+    return NULL;
 }
 
 

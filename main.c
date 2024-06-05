@@ -139,26 +139,48 @@ int main() {
     matrix_free(m_clone8_2);
 
     // Create a matrix A
-    struct matrix* A = matrix_alloc(3, 3);
-    add_element(A, 0, 0, 2); add_element(A, 0, 1, 1); add_element(A, 0, 2, 1);
-    add_element(A, 1, 0, 3); add_element(A, 1, 1, 4); add_element(A, 1, 2, 5);
-    add_element(A, 2, 0, 2); add_element(A, 2, 1, 2); add_element(A, 2, 2, 3);
+    printf("Enter 3х3 matrix А :\n");
+            size_t h1 = 3;
+            size_t w1 = 3;
+
+            struct matrix* mA = matrix_alloc(h1, w1);
+            if (mA == NULL) {
+                return 1;
+            }
+            for (size_t i = 0; i < h1; i++) {
+                for (size_t j = 0; j < w1; j++) {
+                    double element;
+                    scanf("%lf", &element);
+                    add_element(mA, i, j, element);
+                }
+            }
     // Create matrix B (right-hand side of the system)
-    struct matrix* B = matrix_alloc(3, 1);
-    add_element(B, 0, 0, 1);
-    add_element(B, 1, 0, 4);
-    add_element(B, 2, 0, 7);
+    printf("Enter 3х1 matrix B :\n");
+            size_t h2 = 3;
+            size_t w2 = 1;
+
+            struct matrix* mB = matrix_alloc(h2, w2);
+            if (mB == NULL) {
+                return 1;
+            }
+            for (size_t i = 0; i < h2; i++) {
+                for (size_t j = 0; j < w2; j++) {
+                    double element;
+                    scanf("%lf", &element);
+                    add_element(mB, i, j, element);
+                }
+            }
     // Create a matrix for the solution 'x'
     struct matrix* x = matrix_alloc(3, 1);
     printf("\nMatrix A:\n");
-    print_matrix(A);
+    print_matrix(mA);
     printf("\nMatrix B:\n");
-    print_matrix(B);
+    print_matrix(mB);
     printf("\nSolving the system of equations:\n");
-    x = solve_system(A, B, x);
+    x = solve_system(mA, mB, x);
     print_matrix(x);
-    matrix_free(A);
-    matrix_free(B);
+    matrix_free(mA);
+    matrix_free(mB);
     matrix_free(x);
 
     struct matrix *m1 = matrix_alloc(3, 3);
@@ -174,7 +196,7 @@ int main() {
     add_element(m1, 2, 1, 0);
     add_element(m1, 2, 2, -1);
 
-    // print_matrix(m1);
+    print_matrix(m1);
     struct matrix *exp = matrix_exponential(m1, 0.00001);
 
     printf("\nМатричная экспонента:\n");

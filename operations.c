@@ -6,8 +6,8 @@ struct matrix *matrix_sum(const struct matrix *A, const struct matrix *B, struct
     if (A->rows != B->rows || A->cols != B->cols) {
         return NULL;
     }
-    for (int i = 0; i < A->rows; i++) {
-        for (int j = 0; j < A->cols; j++) {
+    for (size_t i = 0; i < A->rows; i++) {
+        for (size_t j = 0; j < A->cols; j++) {
             *get_element(res, i, j) = *get_element(A, i, j) + *get_element(B, i, j);
         }
     }
@@ -15,8 +15,8 @@ struct matrix *matrix_sum(const struct matrix *A, const struct matrix *B, struct
 }
 
 struct matrix *multiply_matrix_by_scalar(struct matrix *m, double scalar) {
-    for (int i = 0; i < m->rows; i++) {
-        for (int j = 0; j < m->cols; j++) {
+    for (size_t i = 0; i < m->rows; i++) {
+        for (size_t j = 0; j < m->cols; j++) {
             *get_element(m, i, j) *= scalar;
         }
     }
